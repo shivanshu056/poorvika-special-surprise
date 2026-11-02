@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry, Poorvika 💗</title>
+<style>
+:root{--pink:#ff6f9f;--deep:#c83e75;--cream:#fff8fb}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#71334e;background:linear-gradient(135deg,#ffe0eb,#fff2f7 48%,#fce4ff);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(#ff8fb6 1px,transparent 1px);background-size:22px 22px}
+.floaties{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.float{position:absolute;bottom:-80px;animation:rise linear infinite;opacity:.75}
+@keyframes rise{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.wrap{position:relative;z-index:1;max-width:760px;margin:auto;padding:34px 18px 60px;text-align:center}
+.badge{display:inline-block;background:#fff9;border:1px solid #fff;padding:8px 16px;border-radius:99px;font-size:13px;letter-spacing:.5px}
+h1{font-size:clamp(38px,9vw,68px);line-height:1.05;margin:18px 0 10px;color:var(--deep);text-shadow:0 3px #fff}
+.subtitle{font-size:17px;margin:0 auto 22px;max-width:520px}
+.hero-stickers{display:flex;justify-content:center;align-items:center;gap:12px;margin:18px 0 24px}
+.sticker{font-size:clamp(48px,12vw,76px);display:inline-block;filter:drop-shadow(0 7px 5px #c83e7522);animation:bob 2s ease-in-out infinite}
+.sticker:nth-child(2){animation-delay:.25s}.sticker:nth-child(3){animation-delay:.5s}
+@keyframes bob{50%{transform:translateY(-13px) rotate(5deg)}}
+.card{background:#ffffffd9;border:2px solid #fff;border-radius:28px;padding:clamp(22px,5vw,38px);box-shadow:0 18px 50px #b94e7920;backdrop-filter:blur(8px)}
+.letter{font-size:16px;line-height:1.85;text-align:left;white-space:pre-line}
+.letter strong{color:var(--deep)}
+button{border:0;border-radius:99px;padding:14px 23px;font-size:16px;font-weight:700;cursor:pointer;transition:.2s;box-shadow:0 7px 16px #c83e7530}
+button:active{transform:scale(.96)}
+.primary{background:linear-gradient(135deg,#ff79a8,#e94d89);color:white}
+.secondary{background:#fff;color:var(--deep);border:1px solid #ffd0e0}
+.buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:24px}
+.hidden{display:none}
+#surprise{margin-top:22px;padding:20px;border-radius:20px;background:#fff0f6;border:1px dashed #ff9cbd;animation:pop .45s ease}
+@keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+#surprise .big{font-size:54px}
+footer{margin-top:25px;font-size:13px;opacity:.75}
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#71334e;color:white;padding:12px 18px;border-radius:99px;opacity:0;transition:.3s;z-index:5;max-width:90%;font-size:14px}
+#toast.show{opacity:1}
+.confetti{position:fixed;top:-15px;z-index:9;pointer-events:none;animation:fall 2.5s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+.small{font-size:13px;opacity:.7;margin-top:17px}
+</style>
+</head>
+<body>
+<div class="floaties" id="floaties"></div>
+<main class="wrap">
+  <div class="badge">💌 A little message from the heart</div>
+  <h1>I'm Sorry,<br>Poorvika! 💗</h1>
+  <p class="subtitle">I made this tiny corner of the internet just to say something important…</p>
+  <div class="hero-stickers" aria-label="Cute animated stickers">
+    <span class="sticker">🧸</span><span class="sticker">💗</span><span class="sticker">🥺</span>
+  </div>
+  <section class="card">
+    <div class="letter">Hey Poorvika,
+
+I know things may not have felt right, and I'm genuinely sorry if I hurt you or made you upset. That was never what I wanted.
+
+Your friendship matters to me, and I don't want my words or actions to make you feel unimportant. I may not always get everything right, but I do want to understand, learn, and do better.
+
+No pressure to reply immediately. I just wanted you to know that I'm truly sorry. Whenever you're ready, I'd love to talk and make things okay. 🫶
+
+<strong>— From someone who really values your friendship 💕</strong></div>
+    <div class="buttons">
+      <button class="primary" onclick="showSurprise()">Tap for a little surprise 🎁</button>
+      <button class="secondary" onclick="sprinkle()">Send some hugs 🫂</button>
+    </div>
+    <div id="surprise" class="hidden">
+      <div class="big">🐻💐💞</div>
+      <h2>One big virtual hug for you!</h2>
+      <p>Sending smiles, good vibes, and the cutest little apology. Take your time, okay? 🌷</p>
+      <button class="primary" onclick="sprinkle()">More love ✨</button>
+    </div>
+  </section>
+  <p class="small">Made with a little courage, lots of care & unlimited pink hearts 💗</p>
+  <footer>Friendship is precious. I hope this brings a tiny smile to your face. 🌸</footer>
+</main>
+<div id="toast">A warm hug is on its way! 💗</div>
+<script>
+const floaties=document.getElementById('floaties');
+const symbols=['💗','💕','✨','🌸','💖','🫧','🌷','🤍'];
+for(let i=0;i<22;i++){
+ const el=document.createElement('span');el.className='float';el.textContent=symbols[i%symbols.length];
+ el.style.left=Math.random()*100+'%';el.style.fontSize=(16+Math.random()*23)+'px';
+ el.style.animationDuration=(9+Math.random()*12)+'s';el.style.animationDelay=(-Math.random()*18)+'s';
+ floaties.appendChild(el);
+}
+function showSurprise(){
+ document.getElementById('surprise').classList.remove('hidden');
+ sprinkle();
+ document.getElementById('surprise').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function sprinkle(){
+ const bits=['💗','💖','💕','🌸','✨','🧸','🌷','💞'];
+ for(let i=0;i<38;i++){
+  const e=document.createElement('span');e.className='confetti';e.textContent=bits[Math.floor(Math.random()*bits.length)];
+  e.style.left=Math.random()*100+'vw';e.style.fontSize=(16+Math.random()*20)+'px';
+  e.style.animationDuration=(1.7+Math.random()*1.6)+'s';document.body.appendChild(e);
+  setTimeout(()=>e.remove(),3500);
+ }
+ const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);
+}
+</script>
+</body>
+</html>
